@@ -312,7 +312,6 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -330,8 +329,7 @@ body {
 
 .project-card {
   flex-shrink: 0;
-  width: calc(100% - 2rem);
-  margin: 0 1rem;
+  width: 100%;
   border-radius: 0.75rem;
   overflow: hidden;
   color: #fff;
