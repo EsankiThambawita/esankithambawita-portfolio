@@ -1,0 +1,102 @@
+/* General body styles - More Whitespace, Light Theme */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif; /* A clean, modern sans-serif */
+  background-color: #f8f8f8; /* Light background */
+  color: #1a1a1a; /* Dark text */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Navbar styles - Minimalist */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem; /* Increased padding */
+  background-color: #f8f8f8; /* Matches body background */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #eaeaea; /* Very subtle separation */
+}
+
+.navbar .logo {
+  font-size: 1.35rem;
+  font-weight: 700; /* Bolder logo */
+  color: #1a1a1a; /* Dark color */
+  letter-spacing: -0.02em; /* Tighter letter spacing for modern look */
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2.5rem; /* More space between links */
+}
+
+.nav-links a {
+  color: #555; /* Muted dark color */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-links a:hover {
+  color: #000; /* Darker on hover */
+}
+
+/* Keyframe Animations (Will need to be re-evaluated for a minimalist aesthetic) */
+/* For now, let's keep them but might adjust or remove later */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* PulsingGlow and blinkShine are likely too intense for minimalist. We'll simplify. */
+/* Keeping placeholder, but will simplify effects if used */
+@keyframes pulsingGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@keyframes blinkShine {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+}
