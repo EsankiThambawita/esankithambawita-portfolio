@@ -281,6 +281,7 @@ body {
 }
 
 /* --- Projects Section Styles --- */
+/* --- Projects Section Styles --- */
 .projects-section {
   padding: 4rem 2rem;
   background-color: #000;
@@ -321,6 +322,7 @@ body {
   scroll-behavior: smooth;
   transition: transform 0.5s ease-in-out;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 .project-slider-track::-webkit-scrollbar {
@@ -330,6 +332,7 @@ body {
 .project-card {
   flex-shrink: 0;
   width: 100%;
+
   border-radius: 0.75rem;
   overflow: hidden;
   color: #fff;
@@ -341,6 +344,26 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 500px;
+  margin: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .project-card {
+    flex-direction: row;
+    min-height: 400px;
+    max-width: 900px;
+    width: calc(100% - 2rem);
+    border-radius: 0.75rem;
+    margin: 0 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .project-card {
+    min-height: 350px;
+    max-width: 1000px;
+    width: calc(100% - 2rem);
+  }
 }
 
 .project-card.active {
@@ -355,23 +378,6 @@ body {
   filter: blur(5px);
   pointer-events: none;
   transform: scale(0.9);
-}
-
-@media (min-width: 768px) {
-  .project-card {
-    flex-direction: row;
-    min-height: 400px;
-    max-width: 900px;
-    width: calc(100% - 2rem);
-    border-radius: 0.75rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .project-card {
-    min-height: 350px;
-    max-width: 1000px;
-  }
 }
 
 .slider-arrow {
