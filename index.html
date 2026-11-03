@@ -3,601 +3,1181 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Esanki Thambawita - Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    <title>Esanki Thambawita - Professional Portfolio</title>
+    <meta
+      name="description"
+      content="Esanki Thambawita: client account management, creative campaign strategy, project coordination and team leadership."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --navy: #0f1f3d;
+        --navy-2: #182f57;
+        --gold: #b08d4f;
+        --gold-light: #d4b57c;
+        --ink: #1c2433;
+        --muted: #576275;
+        --line: #e3e0d9;
+        --panel: #f6f5f1;
+        --paper: #ffffff;
+        --serif: "Cormorant Garamond", "Georgia", serif;
+        --sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+        --side: 300px;
+        --photo-pos: 50% 20%; /* adjust if your face is cropped */
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 32px;
+      }
+      body {
+        font-family: var(--sans);
+        font-size: 0.94rem;
+        line-height: 1.65;
+        color: var(--ink);
+        background: var(--paper);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      :focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ---------- sidebar ---------- */
+      .side {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: var(--side);
+        background: var(--navy);
+        color: #e8ecf5;
+        padding: 28px 30px 20px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .photo {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1.05;
+        margin-bottom: 22px;
+      }
+      .photo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: translate(12px, 12px);
+        border: 1px solid var(--gold-light);
+      }
+      .photo .pic {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(155deg, var(--navy-2), #0a1630);
+        box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+      }
+      .photo .mono {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 4rem;
+        color: var(--gold-light);
+        letter-spacing: 0.04em;
+      }
+      .photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--photo-pos);
+      }
+      .photo .pic::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 70%,
+          rgba(10, 22, 48, 0.35)
+        );
+        pointer-events: none;
+      }
+      .who h1 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.7rem;
+        line-height: 1.05;
+        color: #fff;
+        letter-spacing: 0.01em;
+        margin-bottom: 8px;
+      }
+      .who p {
+        color: var(--gold-light);
+        font-size: 0.86rem;
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
+      .menu {
+        list-style: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        margin-bottom: 18px;
+      }
+      .menu a {
+        display: block;
+        padding: 7px 0 7px 16px;
+        text-decoration: none;
+        color: #c3cde2;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 2px solid transparent;
+        font-size: 0.88rem;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          padding 0.2s;
+      }
+      .menu a:hover,
+      .menu a.active {
+        color: #fff;
+        border-left-color: var(--gold-light);
+        padding-left: 20px;
+      }
+      .reach {
+        margin-top: auto;
+        font-size: 0.85rem;
+      }
+      .reach a:not(.btn-gold) {
+        display: none;
+      }
+      @media (min-height: 960px) {
+        .reach a:not(.btn-gold) {
+          display: block;
+        }
+      }
+      .reach a {
+        display: block;
+        color: #e8ecf5;
+        text-decoration: none;
+        margin-bottom: 6px;
+        word-break: break-all;
+      }
+      .reach a:hover {
+        color: var(--gold-light);
+      }
+      .btn-gold {
+        display: block;
+        text-align: center;
+        margin-top: 12px;
+        padding: 11px 18px;
+        text-decoration: none;
+        font-weight: 600;
+        border: 1px solid var(--gold-light);
+        color: var(--gold-light);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn-gold:hover {
+        background: var(--gold-light);
+        color: var(--navy);
+      }
+
+      /* ---------- main ---------- */
+      main {
+        margin-left: var(--side);
+      }
+      .page {
+        max-width: 880px;
+        padding: 52px 56px 0;
+      }
+      section {
+        padding-bottom: 52px;
+      }
+      .sec-head {
+        margin-bottom: 22px;
+      }
+      .sec-head h2 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 1.85rem;
+        line-height: 1.1;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+      .sec-head::after {
+        content: "";
+        display: block;
+        width: 48px;
+        height: 2px;
+        background: var(--gold);
+      }
+      .lead {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.3rem;
+        line-height: 1.45;
+        color: var(--navy);
+        margin-bottom: 24px;
+      }
+
+      /* profile table */
+      .facts {
+        width: 100%;
+        border-collapse: collapse;
+        border-top: 2px solid var(--navy);
+      }
+      .facts th,
+      .facts td {
+        text-align: left;
+        vertical-align: top;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .facts th {
+        width: 160px;
+        font-weight: 600;
+        color: var(--navy);
+        padding-right: 20px;
+      }
+      .facts td {
+        color: var(--ink);
+      }
+
+      /* competencies */
+      .comp {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0;
+        border: 1px solid var(--line);
+      }
+      .comp > div {
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .comp > div:nth-child(odd) {
+        border-right: 1px solid var(--line);
+      }
+      .comp > div:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+      .comp h3 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--navy);
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+      .comp ul {
+        list-style: none;
+      }
+      .comp li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .comp li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.78em;
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+
+      /* entries */
+      .entry {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+      }
+      .entry:first-of-type {
+        border-top: 2px solid var(--navy);
+      }
+      .entry-head {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .logo {
+        flex: 0 0 60px;
+        width: 60px;
+        height: 60px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: var(--serif);
+        font-weight: 700;
+        color: var(--navy);
+        font-size: 0.9rem;
+      }
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 2px;
+      }
+      .entry-title {
+        flex: 1;
+      }
+      .entry-title h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+      }
+      .entry-title .org {
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .entry-date {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--gold);
+        white-space: nowrap;
+        padding-top: 3px;
+      }
+      .entry ul {
+        list-style: none;
+        margin-left: 78px;
+      }
+      .entry li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+      .entry li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.78em;
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+
+      /* leadership */
+      .proj {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        gap: 24px;
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+      }
+      .proj:first-of-type {
+        border-top: 2px solid var(--navy);
+      }
+      .num {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 3rem;
+        line-height: 0.9;
+        color: var(--gold);
+      }
+      .num small {
+        display: block;
+        font-family: var(--sans);
+        font-size: 0.76rem;
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .proj h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.3;
+      }
+      .proj .meta {
+        color: var(--muted);
+        font-size: 0.84rem;
+        margin-bottom: 9px;
+      }
+      .proj ul {
+        list-style: none;
+        margin-bottom: 12px;
+      }
+      .proj li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 5px;
+      }
+      .proj li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.78em;
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
+      .proj a.doc {
+        font-weight: 600;
+        color: var(--navy-2);
+        text-underline-offset: 4px;
+        text-decoration-color: var(--gold);
+      }
+
+      /* education / research */
+      .two {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 0;
+        border-top: 2px solid var(--navy);
+      }
+      .two > div {
+        padding: 20px 24px 4px 0;
+      }
+      .two > div + div {
+        padding-left: 24px;
+        padding-right: 0;
+        border-left: 1px solid var(--line);
+      }
+      .two h3 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--navy);
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+      .two p {
+        color: var(--muted);
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+      }
+      .two blockquote {
+        font-family: var(--serif);
+        font-style: italic;
+        font-weight: 600;
+        font-size: 1.05rem;
+        line-height: 1.45;
+        color: var(--ink);
+        margin: 8px 0 10px;
+      }
+
+      /* contact */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 40px;
+        border-top: 2px solid var(--navy);
+        padding-top: 24px;
+      }
+      .contact-grid h3 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+      .contact-grid p {
+        color: var(--muted);
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+      }
+      .contact-grid a.line {
+        display: block;
+        font-weight: 600;
+        color: var(--navy);
+        text-underline-offset: 4px;
+        text-decoration-color: var(--gold);
+        margin-bottom: 6px;
+        word-break: break-all;
+      }
+      form {
+        display: grid;
+        gap: 12px;
+      }
+      .field {
+        width: 100%;
+        font: inherit;
+        font-size: 0.9rem;
+        color: var(--ink);
+        background: var(--paper);
+        border: 1px solid #c9c5bb;
+        padding: 10px 13px;
+        border-radius: 2px;
+      }
+      .field:focus {
+        outline: 3px solid var(--gold);
+        outline-offset: 1px;
+        border-color: var(--gold);
+      }
+      textarea.field {
+        resize: vertical;
+        min-height: 110px;
+      }
+      .send {
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        justify-self: start;
+        padding: 11px 28px;
+        background: var(--navy);
+        color: #fff;
+        border: 1px solid var(--navy);
+        transition: background 0.2s;
+      }
+      .send:hover {
+        background: var(--navy-2);
+      }
+      footer {
+        margin-top: 20px;
+        padding: 18px 0 28px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 1000px) {
+        .side {
+          position: static;
+          width: auto;
+          padding: 28px 24px 22px;
+          display: grid;
+          grid-template-columns: 150px minmax(0, 1fr);
+          gap: 0 28px;
+          align-items: end;
+        }
+        .photo {
+          margin: 0 12px 12px 0;
+          grid-row: 1 / span 2;
+        }
+        .who p {
+          margin-bottom: 16px;
+        }
+        .menu {
+          grid-column: 1 / -1;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0 18px;
+          border-top: 1px solid rgba(255, 255, 255, 0.14);
+          margin: 24px 0 0;
+        }
+        .menu a {
+          border-bottom: none;
+          border-left: none;
+          padding: 12px 0;
+        }
+        .menu a:hover,
+        .menu a.active {
+          padding-left: 0;
+        }
+        .reach {
+          display: none;
+        }
+        main {
+          margin-left: 0;
+        }
+        .page {
+          padding: 48px 24px 0;
+        }
+        section {
+          padding-bottom: 56px;
+        }
+        .sec-head h2 {
+          font-size: 1.6rem;
+        }
+        .lead {
+          font-size: 1.15rem;
+        }
+      }
+      @media (max-width: 640px) {
+        .side {
+          grid-template-columns: 1fr;
+        }
+        .photo {
+          max-width: 220px;
+          margin: 0 0 24px;
+          grid-row: auto;
+        }
+        .who h1 {
+          font-size: 1.7rem;
+        }
+        .facts th {
+          display: block;
+          width: auto;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+        .facts td {
+          display: block;
+          padding-top: 4px;
+        }
+        .comp {
+          grid-template-columns: 1fr;
+        }
+        .comp > div:nth-child(odd) {
+          border-right: none;
+        }
+        .comp > div:nth-last-child(2) {
+          border-bottom: 1px solid var(--line);
+        }
+        .entry-head {
+          flex-wrap: wrap;
+        }
+        .entry-date {
+          flex-basis: 100%;
+          padding-left: 78px;
+        }
+        .entry ul {
+          margin-left: 0;
+        }
+        .proj {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .num {
+          font-size: 2.4rem;
+        }
+        .two,
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .two > div + div {
+          padding-left: 0;
+          border-left: none;
+          border-top: 1px solid var(--line);
+          margin-top: 16px;
+        }
+        .two > div {
+          padding-right: 0;
+        }
+      }
+      @media print {
+        .side {
+          position: static;
+          width: auto;
+        }
+        main {
+          margin-left: 0;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar">
-      <div class="logo">ESANKI THAMBAWITA</div>
-      <ul class="nav-links">
-        <li><a href="#projects">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <section class="hero-section">
-      <div class="hero-content">
-        <h1 class="hero-title">HI, I AM ESANKI THAMBAWITA.</h1>
-        <p class="hero-description">
-          A CS undergrad on a mission to learn cool stuff, build awesome things,
-          and vibe with curious minds. Let's connect!
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">CONTACT ME</a>
-          <a
-            href="https://www.linkedin.com/in/esanki-thambawita-350947256/"
-            target="_blank"
-            class="social-icon"
-          >
-            <img src="images/linkedin-hero.png" alt="LinkedIn" />
-          </a>
-          <a
-            href="https://github.com/EsankiThambawita"
-            target="_blank"
-            class="social-icon"
-          >
-            <img src="images/github-hero.png" alt="GitHub" />
-          </a>
-        </div>
-      </div>
-      <div class="hero-image-container">
-        <div class="hero-image-frame">
+    <aside class="side">
+      <div class="photo">
+        <div class="pic">
+          <span class="mono" aria-hidden="true">ET</span>
           <img
             src="images/EsankiThambawita.jpg"
-            alt="Esanki Thambawita"
-            class="hero-image"
+            alt="Portrait of Esanki Thambawita"
+            onerror="this.remove()"
           />
         </div>
       </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="projects-section" id="projects">
-      <div class="section-header">
-        <h2 class="section-title">FEATURED PROJECTS</h2>
-        <p class="section-description">
-          Here are some selected projects that showcase my passion for
-          full-stack development, where I bridge the gap between initial
-          requirements and final delivery through clear technical documentation
-          and organized project workflows.
-        </p>
+      <div class="who">
+        <h1>Esanki<br />Thambawita</h1>
+        <p>Client relations, campaign strategy and project leadership</p>
       </div>
-
-      <div class="slider-container">
-        <button class="slider-arrow left-arrow">
-          <img
-            src="images/left-arrow.png"
-            alt="Left Arrow"
-            class="arrow-icon"
-          />
-        </button>
-        <div class="project-slider-track">
-          <div class="project-card">
-            <div class="project-visual">
-              <span class="conceptual-label">Mobile Application</span>
-              <img
-                src="images/madball.jpg"
-                alt="madball"
-                class="project-image-preview"
-                style="max-height: 250px; object-fit: contain"
-              />
-            </div>
-            <div class="project-details">
-              <h3 class="project-title">
-                MadBall: Local Multiplayer 2D Mobile Game
-              </h3>
-              <p class="project-description">
-                MadBall is a 2D paddle-and-ball mobile game that offers both
-                single-player mode—with AI opponents across three difficulty
-                levels—and a local two-player mode on the same device. Developed
-                using Flutter for UI/UX and menus, and Unity for gameplay and
-                physics, the game features dynamic maps with environmental
-                effects, realistic ball physics, and immersive sound design.
-              </p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <strong>Year</strong><span>2025</span>
-                </div>
-                <div class="meta-item">
-                  <strong>Role</strong><span>Group Leader</span>
-                </div>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://shorturl.at/Q7G2M"
-                  class="btn-text documentation"
-                  >DOCUMENTATION &#x2197;</a
-                >
-                <a
-                  href="https://github.com/EsankiThambawita/MadBall"
-                  class="btn-text github"
-                >
-                  SEE ON GITHUB <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-visual">
-              <span class="conceptual-label">Web Application</span>
-              <img
-                src="images/primebid.png"
-                alt="primebid"
-                class="project-image-preview"
-              />
-            </div>
-            <div class="project-details">
-              <h3 class="project-title">
-                Prime Bid: A Modern Online Auction Platform
-              </h3>
-              <p class="project-description">
-                Prime Bid is a cutting-edge online platform that connects buyers
-                and sellers, providing a secure and intuitive environment for
-                managing auctions. The system enables users to list items, place
-                bids, and track auction progress effortlessly, while offering a
-                dedicated admin panel equipped with robust tools for overseeing
-                auctions and user activities.
-              </p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <strong>Year</strong><span>2024</span>
-                </div>
-                <div class="meta-item">
-                  <strong>Role</strong><span>Group Leader</span>
-                </div>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://shorturl.at/SCIvW"
-                  class="btn-text documentation"
-                  >DOCUMENTATION &#x2197;</a
-                >
-                <a
-                  href="https://github.com/EsankiThambawita/PrimeBidV2"
-                  class="btn-text github"
-                >
-                  SEE ON GITHUB <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-visual">
-              <span class="conceptual-label">Web Application</span>
-              <img
-                src="images/workconnect.png"
-                alt="workconnect"
-                class="project-image-preview"
-              />
-            </div>
-            <div class="project-details">
-              <h3 class="project-title">
-                Work-Connect : Distribute Job Portal
-              </h3>
-              <p class="project-description">
-                Work Connect is a comprehensive job-matching platform developed
-                as part of the Software Fundamentals module. Built with a focus
-                on security, scalability, and usability, it facilitates seamless
-                interactions between job seekers, employers, and administrators
-                while ensuring data integrity and efficient system management.
-              </p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <strong>Year</strong><span>2024</span>
-                </div>
-                <div class="meta-item">
-                  <strong>Role</strong><span>Collaborator</span>
-                </div>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://shorturl.at/7h5R1"
-                  class="btn-text documentation"
-                  >DOCUMENTATION &#x2197;</a
-                >
-                <a
-                  href="https://github.com/EsankiThambawita/Work-Connect"
-                  class="btn-text github"
-                >
-                  SEE ON GITHUB <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="project-visual">
-              <span class="conceptual-label">Web Application</span>
-              <img
-                src="images/emart.png"
-                alt="emart"
-                class="project-image-preview"
-              />
-            </div>
-            <div class="project-details">
-              <h3 class="project-title">
-                E-Mart: A Secure and Dynamic E-Commerce Platform
-              </h3>
-              <p class="project-description">
-                E-Mart is a feature-packed e-commerce platform built as part of
-                the Development of Enterprise Applications module. Designed with
-                scalability, security, and user experience in mind, E-Mart
-                empowers users with a seamless shopping experience while
-                providing administrators with advanced tools to manage the
-                platform effectively.
-              </p>
-              <div class="project-meta">
-                <div class="meta-item">
-                  <strong>Year</strong><span>2024</span>
-                </div>
-                <div class="meta-item">
-                  <strong>Role</strong><span>Group Leader</span>
-                </div>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://shorturl.at/cE8qu"
-                  class="btn-text documentation"
-                  >DOCUMENTATION &#x2197;</a
-                >
-                <a
-                  href="https://github.com/EsankiThambawita/E-Mart"
-                  class="btn-text github"
-                >
-                  SEE ON GITHUB <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button class="slider-arrow right-arrow">
-          <img
-            src="images/right-arrow.png"
-            alt="Right Arrow"
-            class="arrow-icon"
-          />
-        </button>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="tech-stack-section">
-      <h2 class="section-title">Tech Stack & Tools</h2>
-      <div class="tech-icons-grid">
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=react"
-            alt="React"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">React</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=js"
-            alt="JavaScript"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">JavaScript</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=css"
-            alt="CSS3"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">CSS3</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=html"
-            alt="HTML5"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">HTML5</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=nodejs"
-            alt="Node.js"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Node.js</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=express"
-            alt="Express"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Express</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=spring"
-            alt="Spring"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Spring</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=java"
-            alt="Java"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Java</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=cs"
-            alt="C#"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">C#</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=mysql"
-            alt="MySQL"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">MySQL</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=git"
-            alt="Git"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Git</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=figma"
-            alt="Figma"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Figma</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=flutter"
-            alt="Flutter"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Flutter</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=unity"
-            alt="Unity"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Unity</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=postman"
-            alt="Postman"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Postman</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=vscode"
-            alt="VS Code"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">VS Code</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://skillicons.dev/icons?i=idea"
-            alt="IntelliJ IDEA"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">IntelliJ</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
-            alt="Redux"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Redux</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-            alt="Docker"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">Docker</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://axios-http.com/assets/logo.svg"
-            alt="Axios"
-            class="tech-icon-img"
-            style="background-color: white; border-radius: 0.3rem"
-          />
-          <span class="tech-name">Axios</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-            alt="MongoDB"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">MongoDB</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-            alt="PostgreSQL"
-            class="tech-icon-img"
-          />
-          <span class="tech-name">PostgreSQL</span>
-        </div>
-        <div class="tech-item">
-          <img
-            src="https://jwt.io/img/pic_logo.svg"
-            alt="JWT"
-            class="tech-icon-img"
-            style="background-color: white; border-radius: 0.3rem"
-          />
-          <span class="tech-name">JWT</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="about-me-section" id="about">
-      <h2 class="about-title">About Me</h2>
-      <div class="about-content">
-        <p class="about-intro">
-          I’m a full stack development enthusiast and a final year Computer
-          Science student at NSBM Green University with a GPA of 3.9. I learn by
-          building, constantly exploring new technologies through hands-on
-          projects and deep dives into code.
-        </p>
-        <div class="about-more-content">
-          <p>
-            In 2024, I interned at Tecxick Software Solutions where I worked on
-            two client projects that strengthened my technical skills and
-            boosted my confidence in real-world collaboration.
-          </p>
-          <p>
-            Building on that foundation, I completed a Frontend Developer
-            internship at AT Digital Pvt Ltd from October 2025 to April 2026,
-            where I successfully delivered around 8 client projects, further
-            refining my ability to translate complex requirements into clean,
-            well-documented, and user-focused solutions.
-          </p>
-          <p>
-            Beyond coding, I enjoy photography, watching TV shows, swimming, and
-            spending time with my dog. I love solving problems, learning fast,
-            and turning ideas into working products.
-          </p>
-        </div>
-        <button class="btn-more-about">MORE ABOUT ME</button>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section class="connect-section" id="contact">
-      <div class="connect-info-container">
-        <h2 class="connect-title">LET'S CONNECT</h2>
-        <p class="connect-description">
-          Say hello at
-          <a href="mailto:esankithambawita@gmail.com" class="email-link"
-            >esankithambawita@gmail.com</a
-          >
-        </p>
-        <p class="connect-description">
-          For more info, here's my
-          <a
-            href="assets/Resume - Esanki Thambawita.pdf"
-            download
-            class="resume-link"
-            >resume</a
-          >
-        </p>
-        <div class="connect-social-icons">
-          <a
-            href="https://www.linkedin.com/in/esanki-thambawita-350947256/"
-            target="_blank"
-            class="social-icon-link"
-          >
-            <img
-              src="https://skillicons.dev/icons?i=linkedin"
-              alt="LinkedIn"
-              class="social-icon-img"
-            />
-          </a>
-          <a
-            href="https://github.com/EsankiThambawita"
-            target="_blank"
-            class="social-icon-link"
-          >
-            <img
-              src="https://skillicons.dev/icons?i=github"
-              alt="GitHub"
-              class="social-icon-img"
-            />
-          </a>
-        </div>
-      </div>
-      <div class="contact-form-container">
-        <form
-          class="contact-form"
-          action="https://formspree.io/f/mqabjqbe"
-          method="POST"
+      <ul class="menu" id="menu">
+        <li><a href="#profile">Professional profile</a></li>
+        <li><a href="#competencies">Core competencies</a></li>
+        <li><a href="#experience">Professional experience</a></li>
+        <li><a href="#leadership">Leadership and projects</a></li>
+        <li><a href="#education">Education and research</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="reach">
+        <a href="mailto:esankithambawita@gmail.com"
+          >esankithambawita@gmail.com</a
         >
-          <div class="form-group">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              class="form-input"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="email"
-              id="email"
-              name="_replyto"
-              placeholder="Email"
-              class="form-input"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              placeholder="Subject"
-              class="form-input"
-            />
-          </div>
-          <div class="form-group">
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              placeholder="Message"
-              class="form-input"
-            ></textarea>
-          </div>
-          <button type="submit" class="submit-btn">SUBMIT</button>
-        </form>
+        <a
+          href="https://www.linkedin.com/in/esanki-thambawita-350947256/"
+          target="_blank"
+          rel="noopener"
+          >LinkedIn profile</a
+        >
+        <a
+          class="btn-gold"
+          href="assets/Resume - Esanki Thambawita.pdf"
+          download
+          >Download resume</a
+        >
       </div>
-    </section>
+    </aside>
 
-    <footer class="footer">
-      <p>© 2025 ESANKI THAMBAWITA</p>
-    </footer>
+    <main>
+      <div class="page">
+        <section id="profile">
+          <div class="sec-head"><h2>Professional profile</h2></div>
+          <p class="lead">
+            I build strong client relationships and keep projects, teams and
+            deadlines on track. At 3CS, I manage client accounts and develop
+            creative concepts and campaign strategies for reputed clients.
+          </p>
+          <table class="facts">
+            <tr>
+              <th scope="row">Current position</th>
+              <td>Trainee Digital Marketing Executive, 3CS (since 04/2026)</td>
+            </tr>
+            <tr>
+              <th scope="row">Focus areas</th>
+              <td>
+                Client account management, social media and campaign strategy,
+                scheduling, reporting and team coordination
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Education</th>
+              <td>
+                BSc (Hons) in Computer Science, NSBM Green University. GPA 3.8.
+                All final examinations completed; final results and convocation
+                pending.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Leadership</th>
+              <td>
+                Led multiple university project teams of three to ten members
+                from planning to delivery
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Research</th>
+              <td>
+                Published and presented at the NSBM Student Research Symposium
+                on Innovative Technology (NSRSIT 2026)
+              </td>
+            </tr>
+          </table>
+        </section>
 
-    <script src="script.js"></script>
+        <section id="competencies">
+          <div class="sec-head"><h2>Core competencies</h2></div>
+          <div class="comp">
+            <div>
+              <h3>Client relations and communication</h3>
+              <ul>
+                <li>Client coordination and account handling</li>
+                <li>Requirements gathering</li>
+                <li>Stakeholder communication</li>
+                <li>Customer service and project updates</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Management and administration</h3>
+              <ul>
+                <li>Office administration and scheduling</li>
+                <li>Task delegation and workflow coordination</li>
+                <li>Deadline management</li>
+                <li>Team leadership and documentation</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Creative and campaign strategy</h3>
+              <ul>
+                <li>Creative concept development</li>
+                <li>Social media strategy and content planning</li>
+                <li>Campaign performance reporting</li>
+                <li>Advertising budget coordination</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Project management and tools</h3>
+              <ul>
+                <li>ClickUp, Notion and Agile (Scrum)</li>
+                <li>Google Workspace, Microsoft Excel and PowerPoint</li>
+                <li>Meta Business Suite and TikTok Studio</li>
+                <li>Time management and cross-functional collaboration</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience">
+          <div class="sec-head"><h2>Professional experience</h2></div>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="logo">
+                <img
+                  src="images/3cs logo.jpeg"
+                  alt="3CS logo"
+                  onerror="this.replaceWith('3CS')"
+                />
+              </div>
+              <div class="entry-title">
+                <h3>Trainee Digital Marketing Executive</h3>
+                <div class="org">3CS</div>
+              </div>
+              <div class="entry-date">04/2026 to present</div>
+            </div>
+            <ul>
+              <li>
+                Handle client accounts and coordinate with clients to gather
+                requirements, clarify campaign objectives and communicate
+                project updates.
+              </li>
+              <li>
+                Develop creative concepts for reputed client accounts and build
+                social media and campaign strategies that strengthen their
+                online presence and campaign performance.
+              </li>
+              <li>
+                Assist with advertising budget planning, campaign setup and
+                performance monitoring.
+              </li>
+              <li>
+                Prepare social media performance reports and analyse campaign
+                results.
+              </li>
+              <li>
+                Collaborate across teams, including designers, to develop
+                creative assets that match campaign briefs.
+              </li>
+              <li>
+                Maintain project progress, task statuses and deadlines using
+                ClickUp and Google Sheets.
+              </li>
+              <li>
+                Develop and manage social media content calendars in ClickUp to
+                coordinate planning and execution.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="logo">
+                <img
+                  src="images/AT logo.webp"
+                  alt="AT Digital logo"
+                  onerror="this.replaceWith('AT')"
+                />
+              </div>
+              <div class="entry-title">
+                <h3>Frontend Developer Intern</h3>
+                <div class="org">AT Digital (Pvt) Ltd</div>
+              </div>
+              <div class="entry-date">10/2025 to 04/2026</div>
+            </div>
+            <ul>
+              <li>
+                Web Development &amp; Integration: Developed and maintained
+                functional user interfaces using React and Next.js, integrating
+                them with headless CMS platforms like Prismic.
+              </li>
+              <li>
+                Content &amp; Design Management: Built and managed responsive,
+                content-driven sites using WordPress, Shopify, and Prismic,
+                ensuring seamless layouts via Tailwind CSS and SCSS.
+              </li>
+              <li>
+                Quality Assurance &amp; Testing: Performed end-to-end testing
+                and QA to identify bugs and ensure that the final frontend
+                deliverables aligned perfectly with the initial design and
+                functional requirements.
+              </li>
+              <li>
+                Process Optimization: Collaborated with cross-functional teams
+                to refine component reusability and streamline the handoff
+                process between design and development.
+              </li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div class="logo">
+                <img
+                  src="images/Tecxick logo.jpeg"
+                  alt="Tecxick Software Solutions logo"
+                  onerror="this.replaceWith('TS')"
+                />
+              </div>
+              <div class="entry-title">
+                <h3>Software Engineering Intern</h3>
+                <div class="org">Tecxick Software Solutions</div>
+              </div>
+              <div class="entry-date">01/2024 to 07/2024</div>
+            </div>
+            <ul>
+              <li>
+                Software Development: Developed and optimized software
+                applications using C#, XAML, and .NET Framework, improving
+                application efficiency and performance.
+              </li>
+              <li>
+                Web Development: Designed, built, and maintained web
+                applications using HTML5, CSS3, JavaScript, and WordPress,
+                enhancing functionality and user experience.
+              </li>
+              <li>
+                Debugging and Testing: Identified, debugged, and resolved
+                software issues through testing and quality assurance to ensure
+                optimal reliability and performance.
+              </li>
+              <li>
+                Design: Applied UI/UX design best practices to improve user
+                interaction, accessibility, and overall design quality.
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section id="leadership">
+          <div class="sec-head"><h2>Leadership and project management</h2></div>
+
+          <article class="proj">
+            <div class="num">6<small>team members, led by me</small></div>
+            <div>
+              <h3>E-Mart E-commerce Platform</h3>
+              <div class="meta">University group project, 2024</div>
+              <ul>
+                <li>
+                  Led the team from planning to deployment, taking full
+                  responsibility for project delivery.
+                </li>
+                <li>
+                  Divided tasks by team members' strengths and set clear
+                  deadlines for each stage.
+                </li>
+                <li>
+                  Held regular check-ins to track progress, resolve issues and
+                  offer support.
+                </li>
+                <li>
+                  Prepared and maintained the project documentation, including
+                  plans and final reports.
+                </li>
+                <li>Delivered all key features on time.</li>
+              </ul>
+              <a
+                class="doc"
+                href="https://shorturl.at/cE8qu"
+                target="_blank"
+                rel="noopener"
+                >View the project documentation</a
+              >
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="num">5<small>team members, led by me</small></div>
+            <div>
+              <h3>PrimeBid Auction Platform</h3>
+              <div class="meta">University group project, 2024</div>
+              <ul>
+                <li>
+                  Led the team through the full project lifecycle, from planning
+                  to final submission.
+                </li>
+                <li>
+                  Delegated tasks, set deadlines and monitored progress to keep
+                  the team on schedule.
+                </li>
+                <li>
+                  Supported teammates through problems and kept communication
+                  open across the team.
+                </li>
+                <li>
+                  Wrote and managed the project documentation and coordinated
+                  testing before delivery.
+                </li>
+              </ul>
+              <a
+                class="doc"
+                href="https://shorturl.at/SCIvW"
+                target="_blank"
+                rel="noopener"
+                >View the project documentation</a
+              >
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="num">3<small>team members, led by me</small></div>
+            <div>
+              <h3>MadBall Mobile Game</h3>
+              <div class="meta">University group project, 2025</div>
+              <ul>
+                <li>
+                  Led the team to plan and deliver a 2D mobile game with single
+                  and two-player modes.
+                </li>
+                <li>
+                  Assigned tasks, managed timelines and checked in regularly to
+                  keep work on track.
+                </li>
+                <li>
+                  Prepared the project documentation and supported teammates
+                  throughout development.
+                </li>
+              </ul>
+              <a
+                class="doc"
+                href="https://shorturl.at/Q7G2M"
+                target="_blank"
+                rel="noopener"
+                >View the project documentation</a
+              >
+            </div>
+          </article>
+        </section>
+
+        <section id="education">
+          <div class="sec-head"><h2>Education and research</h2></div>
+          <div class="two">
+            <div>
+              <h3>BSc (Hons) in Computer Science</h3>
+              <p>NSBM Green University<br />10/2022 to 11/2026</p>
+              <p>
+                GPA 3.8. All final examinations completed; final results and
+                convocation pending.
+              </p>
+              <p>
+                G.C.E. Advanced Level, C.W.W. Kannangara Central College, 2020:
+                Information Technology, French and English.
+              </p>
+            </div>
+            <div>
+              <h3>Research publication and oral presentation</h3>
+              <blockquote>
+                Development and Evaluation of a Hybrid Convolutional Neural
+                Network-Integrated Deterministic Rule-Based Regulatory
+                Compliance Framework for Cosmetic Product Safety Assessment
+              </blockquote>
+              <p>
+                Selected for publication and oral presentation at the NSBM
+                Student Research Symposium on Innovative Technology (NSRSIT
+                2026).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact">
+          <div class="sec-head"><h2>Contact</h2></div>
+          <div class="contact-grid">
+            <div>
+              <h3>Let's connect</h3>
+              <p>
+                For opportunities, introductions or any questions, get in touch.
+              </p>
+              <a class="line" href="mailto:esankithambawita@gmail.com"
+                >esankithambawita@gmail.com</a
+              >
+              <a
+                class="line"
+                href="https://www.linkedin.com/in/esanki-thambawita-350947256/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn profile</a
+              >
+              <a
+                class="line"
+                href="assets/Resume - Esanki Thambawita.pdf"
+                download
+                >Download resume</a
+              >
+              <p style="margin-top: 14px">
+                References are available on request.
+              </p>
+            </div>
+            <form action="https://formspree.io/f/mqabjqbe" method="POST">
+              <input
+                class="field"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                aria-label="Your name"
+              />
+              <input
+                class="field"
+                type="email"
+                name="_replyto"
+                placeholder="Your email"
+                aria-label="Your email"
+              />
+              <input
+                class="field"
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                aria-label="Subject"
+              />
+              <textarea
+                class="field"
+                name="message"
+                rows="5"
+                placeholder="Your message"
+                aria-label="Your message"
+              ></textarea>
+              <button type="submit" class="send">Send message</button>
+            </form>
+          </div>
+          <footer>
+            <span>&copy; 2026 Esanki Thambawita</span>
+            <a href="#profile">Back to top</a>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      try {
+        var links = document.querySelectorAll("#menu a");
+        var map = {};
+        links.forEach(function (a) {
+          map[a.getAttribute("href").slice(1)] = a;
+        });
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                links.forEach(function (l) {
+                  l.classList.remove("active");
+                });
+                if (map[e.target.id]) map[e.target.id].classList.add("active");
+              }
+            });
+          },
+          { rootMargin: "-30% 0px -60% 0px" },
+        );
+        document.querySelectorAll("main section[id]").forEach(function (s) {
+          io.observe(s);
+        });
+      } catch (e) {}
+    </script>
   </body>
 </html>
